@@ -50,6 +50,8 @@ $driverRow = mysqli_fetch_array($res, MYSQLI_ASSOC);
 		      <li class="nav-item">
 		        <a class="nav-link" href="#">Contacts</a>
 		      </li>
+		      <li class="nav-item"><a class="nav-link btn btn-danger"  href="logout.php?logout">Log out</a></li>
+
 		    </ul>
 		  </div>
 		</nav>
@@ -57,7 +59,7 @@ $driverRow = mysqli_fetch_array($res, MYSQLI_ASSOC);
 	<main>
 		
 			<h1 class="display-4">Welcome, dear <?php echo $driverRow['first_name'] . ' ' . $driverRow['last_name']; ?></h1>
-		  <a href="logout.php?logout">Log out</a>
+		  <a href="fleet.php" class="btn btn-primary">Book a car</a>
 		  
 	</main>
 </body>
