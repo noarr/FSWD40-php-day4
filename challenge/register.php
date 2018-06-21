@@ -22,25 +22,25 @@ if(isset($_POST['btn-signup'])) {
 	//check first name
 	if (empty($first_name)) {
 	  $error = true;
-	  $nameError = "Please enter your full first name.";
+	  $firstnameError = "Please enter your full first name.";
 	 } else if (strlen($first_name) < 3) {
 	  $error = true;
-	  $nameError = "First name must have at least 3 characters.";
+	  $firstnameError = "First name must have at least 3 characters.";
 	 } else if (!preg_match("/^[a-zA-Z ]+$/",$first_name)) {
 	  $error = true;
-	  $nameError = "First name must contain alphabets and space.";
+	  $firstnameError = "First name must contain alphabets and space.";
 	 }
 
 	//check last name
 	if (empty($last_name)) {
 	  $error = true;
-	  $nameError = "Please enter your full last name.";
+	  $lastnameError = "Please enter your full last name.";
 	 } else if (strlen($last_name) < 3) {
 	  $error = true;
-	  $nameError = "Last name must have at least 3 characters.";
+	  $lastnameError = "Last name must have at least 3 characters.";
 	 } else if (!preg_match("/^[a-zA-Z ]+$/",$last_name)) {
 	  $error = true;
-	  $nameError = "Last name must contain alphabets and space.";
+	  $lastnameError = "Last name must contain alphabets and space.";
 	 }
 
 	//check email
