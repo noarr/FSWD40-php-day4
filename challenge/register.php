@@ -4,7 +4,7 @@ ob_start();
 session_start();
 
 if (isset($_SESSION['user']) != "") {
-	header("Location: home"); //send a registered user to home.php
+	header("Location: home.php"); //send a registered user to home.php
 }
 
 include_once('dbconnect.php');
@@ -60,7 +60,7 @@ if(isset($_POST['btn-signup'])) {
 	   $emailError = "Provided Email is already in use.";
 	  }
 	 }
-
+//var_dump($firstname);
 	// password validation
 	 if (empty($pass)){
 	  $error = true;
@@ -150,17 +150,17 @@ if(isset($_POST['btn-signup'])) {
             </div>
         <?php } ?>
         <!--firstname-->
-        <input type="text" name="first_name" class="form-control" placeholder="Enter first name." maxlenth="20" value="<?php echo $firstname ?>">
-        <span class="text-danger"><?php echo $firstnameError ?></span>
+        <input type="text" name="first_name" class="form-control" placeholder="Enter first name." maxlenth="20" value="">
+        <span class="text-danger"><?php //echo $firstnameError ?></span>
         <!--lastname-->
-        <input type="text" name="last_name" class="form-control" placeholder="Enter last name" maxlenth="20" value="<?php echo $lastname ?>">
-        <span class="text-danger"><?php echo $lastnameError ?></span>
+        <input type="text" name="last_name" class="form-control" placeholder="Enter last name" maxlenth="20" value="">
+        <span class="text-danger"><?php //echo $lastnameError ?></span>
         <!--email-->
-        <input type="email" name="email" class="form-control" placeholder="Enter email" maxlenth="50" value="<?php echo $email ?>">
-        <span class="text-danger"><?php echo $emailError?></span>
+        <input type="email" name="email" class="form-control" placeholder="Enter email" maxlenth="50" value="">
+        <span class="text-danger"><?php //echo $emailError?></span>
         <!--password-->
-        <input type="password" name="pass" class="form-control" placeholder="Enter Password" maxlenth="15" value="<?php echo $email?>">
-        <span class="text-danger"><?php echo $passError ?></span>
+        <input type="password" name="pass" class="form-control" placeholder="Enter Password" maxlenth="15" value="">
+        <span class="text-danger"><?php //echo $passError ?></span>
 
         <hr>
 
