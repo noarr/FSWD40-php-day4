@@ -1,7 +1,7 @@
 <?php 
 
 define('DBHOST', 'localhost');
-define('DBUSER', 'cf');
+define('DBUSER', 'root');
 define('DBPASS', '');
 define('DBNAME', 'carrentalDB');
 
