@@ -148,7 +148,7 @@ if(isset($_POST['btn-signup'])) {
             <div class="alert alert-<?php echo $errTyp ?>">
                 <?php echo $errMSG; ?>
             </div>
-        <?php } ?>
+        
         <!--firstname-->
         <input type="text" name="first_name" class="form-control" placeholder="Enter first name." maxlenth="20" value="">
         <span class="text-danger"><?php //echo $firstnameError ?></span>
