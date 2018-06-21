@@ -59,8 +59,9 @@ $driverRow = mysqli_fetch_array($res, MYSQLI_ASSOC);
 	<main>
 		
 			<h1 class="display-4">Welcome, dear <?php echo $driverRow['first_name'] . ' ' . $driverRow['last_name']; ?></h1>
-		  <a href="fleet.php" class="btn btn-primary">Book a car</a>
+		  <a href="reservation.php" class="btn btn-primary">Book a car</a>
 		  
 	</main>
 </body>
 </html>
+<?php ob_end_flush(); ?>
