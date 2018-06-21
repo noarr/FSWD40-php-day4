@@ -1,4 +1,13 @@
-<?php include("data.php");?>
+<?php
+ob_start();
+session_start();
+require_once 'dbconnect.php';
+
+if(!isset($_SESSION['user']) != "") {
+	header('Location: reservation.php');
+	exit;
+}
+?>
 
 <!doctype html>
 <!DOCTYPE html>
@@ -44,10 +53,27 @@
 			<select class="custom-select" name="car_id">
 				<option selected>Select your car</option>
 				<?php 
-				$i = 1;
-				foreach($fleet as $car => $features){
-					?>
-					<option value="<?php echo $i++ ?>"><?php echo $car?></option>
+
+				$getcars = "SELECT cars.car_id, car_brands.name AS 'Brand', car_models.name AS 'Model'
+				FROM cars
+				INNER JOIN car_models
+					ON cars.fk_car_model_id = car_models.car_model_id
+				INNER JOIN car_brands
+					ON car_models.fk_car_brand_id = car_brands.car_brand_id";
+
+
+				$getdriver = "SELECT first_name, last_name, driver_id
+					FROM drivers
+					WHERE driver_id =" . $_SESSION['user'];
+	
+				$res = mysqli_query($con, $getdriver);
+				$result = mysqli_query($con, $getcars);
+
+				$driverRow = mysqli_fetch_array($res, MYSQLI_ASSOC);
+
+				
+				while ($row = mysqli_fetch_assoc($result)) { ?>
+					<option value="<?php echo $row['car_id'] ?>"><?php echo $row['Brand'] . " " . $row['Model'] ?></option>
 					<?php
 				}	
 				?>
@@ -55,35 +81,14 @@
 
 			<div class="form-group">
 				<label for="exampleFormControlInput1">First name</label>
-				<input type="text" class="form-control" name="first_name"><!--id="exampleFormControlInput1"-->
+				<input type="text" class="form-control" name="first_name" placeholder="<?php echo $driverRow['first_name']?>" disabled><!--id="exampleFormControlInput1"-->
 			</div>
-
+			<input style="display:none;" name="driver_id" type="text" value="<?php echo $driverRow['driver_id']; ?>">
 			<div class="form-group">
 				<label for="exampleFormControlInput1">Last name</label>
-				<input type="text" class="form-control" name="last_name">
+				<input type="text" class="form-control" name="last_name" placeholder="<?php echo $driverRow['last_name']?>" disabled>
 			</div>
 
-			<!--<div class="input-group date" data-provide="datepicker">
-		    <input type="text" class="form-control">
-		    <div class="input-group-addon">
-		        <span class="glyphicon glyphicon-th"></span>
-		    </div>
-			</div>-->
-
-			<div class="form-group">
-				<label for="exampleFormControlInput1">Birth date</label>
-				<input name="birth_date" id="datepicker1"> <!--id="datepicker-->
-			</div>
-
-			<div class="form-group">
-				<label for="exampleFormControlInput1">Driving license number</label>
-				<input class="form-control" name="driving_licence_num">
-			</div>
-
-			<div class="form-group">
-				<label for="exampleFormControlInput1">Driving license date</label>
-				<input name="driving_licence_date" id="datepicker2" >
-			</div>
 
 			<select class="custom-select" name="fk_start_location">
 				<option selected>Start location</option>
