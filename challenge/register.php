@@ -89,17 +89,14 @@ if(isset($_POST['btn-signup'])) {
 	   unset($last_name);
 	   unset($email);
 	   unset($pass);
-	   //var_dump($errMSG);
 	  } else {
 	   $errTyp = "danger";
-	   $errMSG = "Something went wrong, try again later...";
-	   //var_dump($errMSG);
+	   $errMSG = "Something went wrong, try again later...";   
 	  }
 
 	}
 
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -110,6 +107,7 @@ if(isset($_POST['btn-signup'])) {
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<header>
@@ -143,31 +141,35 @@ if(isset($_POST['btn-signup'])) {
 		<h1>Fill the form to register</h1>
 		<div class="row">
 		<div class="col-8 col-md-offset-2">
-		<form method="post" action="register.php" autocomplete="off">
+   <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
+        <h2>SIGN UP NOW</h2>
+        <hr>
+        <?php if(isset($errMSG)) { ?>
+            <div class="alert alert-<?php echo $errTyp ?>">
+                <?php echo $errMSG; ?>
+            </div>
+        <?php } ?>
+        <!--firstname-->
+        <input type="text" name="first_name" class="form-control" placeholder="Enter first name." maxlenth="20" value="<?php echo $firstname ?>">
+        <span class="text-danger"><?php echo $firstnameError ?></span>
+        <!--lastname-->
+        <input type="text" name="last_name" class="form-control" placeholder="Enter last name" maxlenth="20" value="<?php echo $lastname ?>">
+        <span class="text-danger"><?php echo $lastnameError ?></span>
+        <!--email-->
+        <input type="email" name="email" class="form-control" placeholder="Enter email" maxlenth="50" value="<?php echo $email ?>">
+        <span class="text-danger"><?php echo $emailError?></span>
+        <!--password-->
+        <input type="password" name="pass" class="form-control" placeholder="Enter Password" maxlenth="15" value="<?php echo $email?>">
+        <span class="text-danger"><?php echo $passError ?></span>
 
-			<div class="form-group">
-				<label for="exampleFormControlInput1">First name:</label>
-				<input type="text" class="form-control" name="first_name"><!--id="exampleFormControlInput1"-->
-			</div>
+        <hr>
 
-			<div class="form-group">
-				<label for="exampleFormControlInput1">Last name:</label>
-				<input type="text" class="form-control" name="last_name">
-			</div>
-
-			<div class="form-group">
-				<label for="exampleFormControlInput1">Email:</label>
-				<input name="email"> <!--id="datepicker-->
-			</div>
-
-			<div class="form-group">
-				<label for="exampleFormControlInput1">Password:</label>
-				<input class="form-control" name="pass">
-			</div>
-			
-			<button type="submit" class="btn btn-block btn-primary" name="btn-signup">Sign Up</button>
-
-		</form>
+        <button type="submit" class="btn btn-block btn-primary" name="btn-signup">Sign Up</button>
+        <hr>
+        <small>Already a Member?</small>
+        <a href="index.php">Login now</a>
+    </form>
 	</main>
 </body>
 </html>
+<?php ob_end_flush(); ?>

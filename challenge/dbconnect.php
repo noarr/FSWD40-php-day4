@@ -1,9 +1,9 @@
 <?php 
 
 define('DBHOST', 'localhost');
-define('DBUSER', 'root');
+define('DBUSER', 'cf');
 define('DBPASS', '');
-define('DBNAME', 'cr09_ivan_zykov_carrental');
+define('DBNAME', 'carrentalDB');
 
 $con = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
 
