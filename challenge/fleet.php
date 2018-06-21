@@ -1,17 +1,6 @@
 <?php
-include("data.php");
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cr09_ivan_zykov_carrental";
+include_once('dbconnect.php');
 
-$con = mysqli_connect($servername, $username, $password, $dbname);
-
-if (!$con) {
-	die("Connection failed: " . mysqli_connect_error());
-} else {
-	//echo "Connected successfully";
-}
 
 $sql = "SELECT cars.car_id, car_brands.name AS 'Brand', car_models.name AS 'Model', cars.car_year, cars.color, car_models.transmission, car_models.clima, cars.price_day
 				FROM cars
@@ -75,6 +64,7 @@ $result = mysqli_query($con, $sql);
 				    	<li><em>Air conditioner: </em><?php echo $row['clima'] ?></li>
 				    	<li><em>Transmission: </em><?php echo $row['transmission'] ?></li>
 				    	<li><em>Price: </em><?php echo $row['price_day'] ?></li>
+				    	<li><a href="reservation.php" class="btn btn-primary">Book me!</a></li>
 				    </ul>
 				  </div>
 				</div>
